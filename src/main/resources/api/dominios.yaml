@@ -1,0 +1,348 @@
+swagger: "2.0"
+info:
+  description: "API para cadastro de domínios genéricos, por exemplo: estado civil, sexo, dentre outros"
+  version: "1.0.0"
+  title: "Swagger IGTI Dominios"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "nroncatti@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "aplwebtst.igti.brasil"
+basePath: "/v1"
+tags:
+- name: "dominios"
+  description: "Cadastro de domínios"
+schemes:
+- "https"
+- "http"
+paths:
+  /valoresdominio:
+    post:
+      tags:
+      - "dominios"
+      summary: "Adicionar valores de domínios"
+      description: ""
+      operationId: "criarValoresDominios"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Request de dominios"
+        required: true
+        schema:
+          $ref: "#/definitions/ValorDominioType"
+      responses:
+        200:
+          description: "Atualização realizada com sucesso"
+          schema:
+            $ref: "#/definitions/ValorDominioType"
+        400:
+          description: "Parâmetros inválido"
+          schema:
+            $ref: "#/definitions/Fault"
+        404:
+          description: "Serviço indisponível"
+          schema:
+            $ref: "#/definitions/Fault"
+
+            
+  /valoresdominio/{codigoValorDominio}:
+    put:
+      tags:
+      - "dominios"
+      summary: "Atualiação de domínio por meio do código"
+      description: ""
+      operationId: "atualizarValorDominio"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "codigoValorDominio"
+        description: "Código do domínio enviado para a atualização"
+        required: true
+        type: "integer"
+        format: "int32"
+      - in: "body"
+        name: "body"
+        description: "Objeto contendo atributos de domínio a ser armazenado"
+        required: true
+        schema:
+          $ref: "#/definitions/ValorDominioType"
+      responses:
+        "200":
+          description: "Atualização realizada com sucesso"
+          schema:
+            $ref: "#/definitions/ValorDominioType"
+        "400":
+          description: "Parâmetros inválido"
+          schema:
+            $ref: "#/definitions/Fault"
+        "404":
+          description: "Serviço indisponível"
+          schema:
+            $ref: "#/definitions/Fault"
+  
+  /dominios:
+    post:
+      tags:
+      - "dominios"
+      summary: "Adicionar configuracao de domínios"
+      description: ""
+      operationId: "criarDominios"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Request de dominios"
+        required: true
+        schema:
+          $ref: "#/definitions/DominioType"
+      responses:
+        "200":
+          description: "Domínio criado com sucesso"
+          schema:
+            $ref: "#/definitions/DominioType"
+        "400":
+          description: "Dado inválido"
+          schema:
+            $ref: "#/definitions/Fault"
+        "404":
+          description: "Serviço indisponível"
+          schema:
+            $ref: '#/definitions/Fault'
+            
+    get:
+      tags:
+      - "Dominios"
+      summary: "Lista de configuração de domínios"
+      description: "Obtêm lista de domínios"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "nome"
+        in: "query"
+        description: "Filtra por contém no nome (descrição) dos domínios"
+        required: false
+        type: "string"
+      - name: "orderByType"
+        in: "query"
+        description: "Tipo de ordenação, asc ou desc"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        description: "Quantidade de páginas a serem recuperadas"
+        required: false
+        type: integer
+        format: int32
+        default: 10
+      responses:
+        200:
+          description: "Registro(s) econtrados(s)"
+          headers:
+            X-Total-Elements:
+              type: integer
+              description: "total de domínios disponíveis para navegação"
+            X-total-Pages: 
+              type: integer
+              description: "Toal de páginas disponíveis para navegação"
+            Link:
+              type: string
+              description: "Links para navegação entre páginas"
+          schema:
+            $ref: "#/definitions/DominioPaginadoType"
+        400:
+          description: "Parâmetro Inválido"
+          schema:
+            $ref: '#/definitions/Fault'
+        404:
+          description: "Serviço indisponível"
+          schema:
+            $ref: '#/definitions/Fault'
+            
+  /dominios/{codigoDominio}:
+    get:
+      tags:
+      - "Dominios"
+      summary: "Busca domínios por meio do código"
+      description: "Recupera as informações de domínio por meio do código"
+      operationId: "buscarDominioPorCodigo"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "codigoDominio"
+        in: "path"
+        description: "Código do domínio o qual será retornado"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Operação realizada com sucesso"
+          schema:
+            $ref: "#/definitions/DominioType"
+        400:
+          description: "Parâmetro inválido"
+          schema:
+            $ref: "#/definitions/Fault"
+        404:
+          description: "Serviço indisponível"
+          schema: 
+            $ref: '#/definitions/Fault'
+            
+    put:
+      tags:
+      - "Dominios"
+      summary: "Atualiza dominios"
+      description: ""
+      operationId: "atualizarDominio"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "codigoDominio"
+        in: "path"
+        description: "código enviado para atualização"
+        required: true
+        type: "integer"
+        format: "int32"
+      - in: "body"
+        name: "body"
+        description: "Domínio a ser armazenado"
+        required: true
+        schema:
+          $ref: '#/definitions/DominioType'
+      responses:
+        200:
+          description: "Atualização realizada com sucesso"
+          schema: 
+            $ref: '#/definitions/DominioType'
+        400: 
+          description: "Parâmetro inválido"
+          schema: 
+            $ref: '#/definitions/Fault'
+        404:
+          description: "Serviço não disponível"
+          schema:
+            $ref: '#/definitions/Fault'
+            
+  /dominios/{codigoDominio}/valores:
+    get:
+      tags:
+      - "Dominios"
+      summary: "Busca domínios por meio do código"
+      description: "Retorna as informações de domínios por meio do código"
+      operationId: "buscarValoresPorCodigo"
+      produces: 
+      - "application/json"
+      parameters:
+      - name: "codigoDominio"
+        in: "path"
+        description: "Código do domínio para"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Operação realizada com sucesso"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/ValorDominioType"
+        400:
+          description: "Parâmetros inválido"
+          schema: 
+            $ref: "#/definitions/Fault"
+        404:
+          description: "Serviço indisponível"
+          schema:
+            $ref: "#/definitions/Fault"
+      
+
+definitions:
+  
+  DominioPaginadoType:
+    description: "Objeto que representa o restorno da lista de dominios paginado"
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      perPage: 
+        type: integer
+        format: int12
+      totalPages:
+        type: integer
+        format: int32
+      totalElements:
+        type: integer
+        format: int32
+      dominiosType:
+        type: array
+        items:
+          $ref: '#/definitions/DominioType'
+            
+  DominioType:
+    type: object
+    properties:
+      codigoDominio:
+        type: integer
+        format: int32
+      nomeFisicoConfiguracao:
+        type: string
+      nomeLogicoConfiguracao:
+        type: string
+      codigoFisicoDominioConfiguracao:
+        type: string
+      nomeFisicoDominioConfiguracao:
+        type: string
+          
+  ValorDominioType:
+    type: object
+    properties:
+      codigoDominio:
+        type: integer
+        format: int32
+      codigoValorDominio:
+        type: integer
+        format: int32
+      nomeDominio:
+        format: string
+
+  Fault:
+    type: "object"
+    properties:
+      mensagens:
+        type: array
+        items: 
+          $ref: "#/definitions/Message"
+      dataOcorrencia:
+        type: date
+      fonte:
+        type: string
+      tipo:
+        type: string
+          
+  Message:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      mensagem: 
+        type: string
+  
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
