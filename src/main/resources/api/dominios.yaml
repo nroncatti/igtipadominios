@@ -299,11 +299,9 @@ definitions:
       codigoDominio:
         type: integer
         format: int32
-      nomeFisicoConfiguracao:
+      nomeFisicoTabelConfiguracao:
         type: string
       nomeLogicoConfiguracao:
-        type: string
-      codigoFisicoDominioConfiguracao:
         type: string
       nomeFisicoDominioConfiguracao:
         type: string
@@ -312,9 +310,6 @@ definitions:
     type: object
     properties:
       codigoDominio:
-        type: integer
-        format: int32
-      codigoValorDominio:
         type: integer
         format: int32
       nomeDominio:

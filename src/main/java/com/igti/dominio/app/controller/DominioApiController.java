@@ -2,8 +2,11 @@ package com.igti.dominio.app.controller;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,9 @@ import com.igti.dominio.app.api.DominiosApi;
 import com.igti.dominio.app.api.model.DominioPaginadoType;
 import com.igti.dominio.app.api.model.DominioType;
 import com.igti.dominio.app.api.model.ValorDominioType;
+import com.igti.dominio.app.domain.DominioConfiguracao;
+import com.igti.dominio.app.repository.DominioConfiguracaoRepository;
+import com.igti.dominio.app.service.impl.DominioServiceImpl;
 
 @RestController
 public class DominioApiController implements DominiosApi{
@@ -21,6 +27,9 @@ public class DominioApiController implements DominiosApi{
 	/**
 	 * Constantes serao inclusas aqui
 	 */
+	
+	@Autowired
+	private DominioServiceImpl service;
 	
 	private static final String CAMPO_OBRIGATORIO = "Campo Obrigatório";
 	
@@ -30,8 +39,10 @@ public class DominioApiController implements DominiosApi{
 	@RequestMapping(value = "/v1/dominios/{codigoDominio}", produces = { MediaType.APPLICATION_JSON_VALUE },
 	consumes = { MediaType.APPLICATION_JSON_VALUE }, method = RequestMethod.GET)
 	public ResponseEntity<DominioType> buscarDominioPorCodigo(final Integer codigoDominio) {
+		
+		/*DominioType obj = service.buscarDominioPorCodigo(codigoDominio);
+		return new ResponseEntity<DominioType>(obj, HttpStatus.OK);*/
 		return null;
-	
 	}
 
 	@Override
