@@ -2,6 +2,7 @@ package com.igti.dominio.app.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,49 +18,72 @@ public class DominioConfiguracao implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codigo;
-	private String  nomeCodigoFisico;
+	private String  nomeTabelaFisico;
 	private String  nomeLogico;
-	private String 	nomeFisico;
+	private String 	nomeCodigoFisico;
+	private String  nomeColunaFisco;
+
 	
-	public DominioConfiguracao(Integer codigo, String nomeCodigoFisico, String nomeLogico, String nomeFisico) {
+	public DominioConfiguracao(Integer codigo, String nomeTabelaFisico, String nomeLogico, String nomeCodigoFisico, 
+			String nomeColunaFisico) {
 		super();
 		this.codigo = codigo;
-		this.nomeCodigoFisico = nomeCodigoFisico;
+		this.nomeTabelaFisico = nomeTabelaFisico;
 		this.nomeLogico = nomeLogico;
-		this.nomeFisico = nomeFisico;
+		this.nomeCodigoFisico = nomeCodigoFisico;
+		this.nomeColunaFisco = nomeColunaFisico;
 	}
 
+	@Column(name="CODIGO", nullable=false, updatable=false, precision=5, scale=0)
 	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public String getNomeCodigoFisico() {
-		return nomeCodigoFisico;
+	@Column(name="NOMETABELAFISICO", nullable=false, length=20)
+	public String getNomeTabelaFisico() {
+		return nomeTabelaFisico;
 	}
 
+	@Column(name="NOMELOGICO", nullable=false, length=50)
 	public String getNomeLogico() {
 		return nomeLogico;
 	}
 
-	public String getNomeFisico() {
-		return nomeFisico;
+	@Column(name="NOMECODIGOFISICO", nullable=false, length=30)
+	public String getNomeCodigoFisico() {
+		return nomeCodigoFisico;
 	}
+
+	@Column(name="NOMECOLUNAFISICO", nullable=false, length=30)
+	public String getNomeColunaFisco() {
+		return nomeColunaFisco;
+	}
+
 
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
-	public void setNomeCodigoFisico(String nomeCodigoFisico) {
-		this.nomeCodigoFisico = nomeCodigoFisico;
+
+	public void setNomeTabelaFisico(String nomeTabelaFisico) {
+		this.nomeTabelaFisico = nomeTabelaFisico;
 	}
+
 
 	public void setNomeLogico(String nomeLogico) {
 		this.nomeLogico = nomeLogico;
 	}
 
-	public void setNomeFisico(String nomeFisico) {
-		this.nomeFisico = nomeFisico;
+
+	public void setNomeCodigoFisico(String nomeCodigoFisico) {
+		this.nomeCodigoFisico = nomeCodigoFisico;
 	}
+
+
+	public void setNomeColunaFisco(String nomeColunaFisco) {
+		this.nomeColunaFisco = nomeColunaFisco;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -68,6 +92,7 @@ public class DominioConfiguracao implements Serializable{
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -85,5 +110,7 @@ public class DominioConfiguracao implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 
 }

@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class TipoSeguroDomain implements Serializable{
+public class TipoSeguro implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class TipoSeguroDomain implements Serializable{
 	private Integer codigo;
 	private String nome;
 	
-	public TipoSeguroDomain(Integer codigo, String nome) {
+	public TipoSeguro(Integer codigo, String nome) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -56,7 +56,7 @@ public class TipoSeguroDomain implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoSeguroDomain other = (TipoSeguroDomain) obj;
+		TipoSeguro other = (TipoSeguro) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
