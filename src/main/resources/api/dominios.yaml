@@ -299,11 +299,13 @@ definitions:
       codigoDominio:
         type: integer
         format: int32
-      nomeFisicoTabelConfiguracao:
+      nomeTabelaFisico:
         type: string
-      nomeLogicoConfiguracao:
+      nomeLogico:
         type: string
-      nomeFisicoDominioConfiguracao:
+      nomeCodigoFisico:
+        type: string
+      nomeColunaFisco:
         type: string
           
   ValorDominioType:
