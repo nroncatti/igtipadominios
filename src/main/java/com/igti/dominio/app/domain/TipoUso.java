@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TIPSEG")
-public class TipoSeguro implements Serializable{
+@Table(name="TIPUSO")
+public class TipoUso implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
@@ -21,9 +21,9 @@ public class TipoSeguro implements Serializable{
 	private Integer codigo;
 	private String nome;
 	
-	 public TipoSeguro(){}
+	 public TipoUso(){}
 	
-	public TipoSeguro(Integer codigo, String nome) {
+	public TipoUso(Integer codigo, String nome) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -63,7 +63,7 @@ public class TipoSeguro implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoSeguro other = (TipoSeguro) obj;
+		TipoUso other = (TipoUso) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

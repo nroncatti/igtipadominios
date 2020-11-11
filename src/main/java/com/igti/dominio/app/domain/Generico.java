@@ -11,9 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TABDOMINIO")
-public class Dominio implements Serializable{
+public class Generico {
 
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,13 +22,13 @@ public class Dominio implements Serializable{
 	private String 	nomeCodigoFisico;
 	private String  nomeColunaFisco;
 
-	public Dominio() {
+	public Generico() {
 		
 	}
 
-	public Dominio(Integer codigoDominio, String nomeTabelaFisico, String nomeLogico, String nomeCodigoFisico,
+	public Generico(Integer codigoDominio, String nomeTabelaFisico, String nomeLogico, String nomeCodigoFisico,
 			String nomeColunaFisco) {
-		super();
+		
 		this.codigoDominio = codigoDominio;
 		this.nomeTabelaFisico = nomeTabelaFisico;
 		this.nomeLogico = nomeLogico;
@@ -98,7 +97,7 @@ public class Dominio implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dominio other = (Dominio) obj;
+		Generico other = (Generico) obj;
 		if (codigoDominio == null) {
 			if (other.codigoDominio != null)
 				return false;

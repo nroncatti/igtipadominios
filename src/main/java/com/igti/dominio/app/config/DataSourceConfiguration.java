@@ -1,4 +1,4 @@
-package com.igti.dominio.config;
+package com.igti.dominio.app.config;
 
 import javax.sql.DataSource;
 

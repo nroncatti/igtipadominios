@@ -1,52 +1,38 @@
-package com.igti.dominio.app.domain;
+package com.igti.dominio.app.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="TIPSEG")
-public class TipoSeguro implements Serializable{
-	
+public class Dominio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+
 	private Integer codigo;
 	private String nome;
 	
-	 public TipoSeguro(){}
+	public Dominio() {}
 	
-	public TipoSeguro(Integer codigo, String nome) {
+	public Dominio(Integer codigo, String nome) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 	}
-
-	@Column(name="CODIGO", nullable=false, updatable=false, precision=5, scale=0)
 	public Integer getCodigo() {
 		return codigo;
 	}
-	
-	@Column(name="NOME", nullable=false, length=50)
 	public String getNome() {
 		return nome;
 	}
-
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	@Override
+	public String toString() {
+		return "Dominio [codigo=" + codigo + ", nome=" + nome + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,7 +40,6 @@ public class TipoSeguro implements Serializable{
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -63,7 +48,7 @@ public class TipoSeguro implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoSeguro other = (TipoSeguro) obj;
+		Dominio other = (Dominio) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -71,5 +56,7 @@ public class TipoSeguro implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 
 }
