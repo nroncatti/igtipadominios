@@ -60,6 +60,7 @@ public class DominioRepositoryImpl implements IDominioRepositoryCustom{
 					}
 				}
 
+	
 				return retorno;
 			}		
 	}

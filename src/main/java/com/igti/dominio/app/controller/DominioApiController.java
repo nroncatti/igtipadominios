@@ -6,8 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import org.hibernate.service.spi.InjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.igti.dominio.app.domain.Generico;
-import com.igti.dominio.app.domain.TipoSeguro;
 import com.igti.dominio.app.dto.DominioDTO;
 import com.igti.dominio.app.model.Dominio;
 import com.igti.dominio.app.service.DominioService;
