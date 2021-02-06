@@ -45,6 +45,7 @@ public class DominioRepositoryImpl implements IDominioRepositoryCustom{
 				//.addScalar("codigoDominio", IntegerType.INSTANCE)
 				.addScalar("codigo")
 				.addScalar("nome");
+			
 				
 				//.setResultTransformer(Transformers.aliasToBean(Dominio.class));
 				

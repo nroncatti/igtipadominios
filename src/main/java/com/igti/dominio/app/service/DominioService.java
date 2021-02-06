@@ -19,9 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.igti.dominio.app.domain.Generico;
 import com.igti.dominio.app.domain.TipoSeguro;
+import com.igti.dominio.app.domain.ValorDominio;
+import com.igti.dominio.app.dto.ValorDominioDto;
 import com.igti.dominio.app.exceptions.DataIntegrityException;
 import com.igti.dominio.app.model.Dominio;
 import com.igti.dominio.app.repository.DominioRepository;
+import com.igti.dominio.app.repository.ValorDominioRepository;
+import com.igti.dominio.app.repository.custom.impl.ValorDominioRepositoryImpl;
 
 
 @Named
@@ -31,6 +35,9 @@ public class DominioService{
 	
 	@Inject
 	private DominioRepository dominioRepository;
+	
+	@Inject
+	private ValorDominioRepositoryImpl valorDominioRepository;
 
 	public Generico find(Integer codigoDominio) {
 
@@ -91,5 +98,19 @@ public class DominioService{
 	public List<Dominio> findValoresDominios(Integer codigoDominio) throws Exception {
 			
 		return dominioRepository.findByValoresPorCodigo(codigoDominio);
+	}
+	
+	@Transactional
+	public ValorDominioDto insertValorDominio(final ValorDominioDto body) {
+		
+		Optional<Generico> generico = dominioRepository.findById(body.getCodigoGenerico());
+		
+		final ValorDominioDto dominioComValores = valorDominioRepository.cadastrar(generico, body);
+		
+		return dominioComValores;
+	}
+	
+	public ValorDominioDto atualizarValorDominio(final ValorDominioDto body, final Integer codigoValorDominio) {
+		return valorDominioRepository.atualizarValorDominio(body, codigoValorDominio);
 	}
 }

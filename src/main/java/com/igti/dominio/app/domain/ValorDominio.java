@@ -13,6 +13,7 @@ public class ValorDominio {
 	@Id
 	private Integer codigo = null;
 	private String nome;
+	private Integer codigoGenerico = null;
 
 
 	public Integer getCodigo() {
@@ -29,6 +30,14 @@ public class ValorDominio {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getCodigoGenerico() {
+		return codigoGenerico;
+	}
+
+	public void setCodigoGenerico(Integer codigoGenerico) {
+		this.codigoGenerico = codigoGenerico;
 	}
 
 	

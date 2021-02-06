@@ -11,30 +11,35 @@ public class GenericoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer codigo;
-	private String  nome;
-	
-	
+	private String  nomeLogico;
+		
 	public GenericoDTO() {
 		
 	}
-	
-	public GenericoDTO(Dominio obj) {
+
+	public GenericoDTO(Integer codigo, String nomeLogico) {
+		super();
+		this.codigo = codigo;
+		this.nomeLogico = nomeLogico;
+	}
+
+	public GenericoDTO(Generico obj) {
 		
-		codigo = obj.getCodigo();
-		nome = obj.getNome();
+		codigo = obj.getCodigoDominio();
+		nomeLogico = obj.getNomeLogico();
 	}
 	
 	public Integer getCodigo() {
 		return codigo;
 	}
-	public String getNome() {
-		return nome;
+	public String getNomeLogico() {
+		return nomeLogico;
 	}
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeLogico(String nomeLogico) {
+		this.nomeLogico = nomeLogico;
 	}
 
 }

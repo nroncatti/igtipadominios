@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.igti.dominio.app.domain.Generico;
-import com.igti.dominio.app.dto.DominioDTO;
+import com.igti.dominio.app.dto.GenericoDTO;
+import com.igti.dominio.app.dto.ValorDominioDto;
 import com.igti.dominio.app.model.Dominio;
 import com.igti.dominio.app.service.DominioService;
 
@@ -61,9 +62,9 @@ public class DominioApiController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity <List<DominioDTO>> findAll() {
+	public ResponseEntity <List<GenericoDTO>> findAll() {
 		List<Generico> obj = dominioService.findAll();
-		List<DominioDTO> listDto = obj.stream().map(objeto -> new DominioDTO(objeto)).collect(Collectors.toList());
+		List<GenericoDTO> listDto = obj.stream().map(objeto -> new GenericoDTO(objeto)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 	
@@ -91,5 +92,24 @@ public class DominioApiController {
 		}
 		return new ResponseEntity<>(valorDominio, HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(value="/valores",
+	method=RequestMethod.POST)
+	public ResponseEntity<ValorDominioDto> cadastrarValorDominio(@RequestBody ValorDominioDto body) {
+		
+		ValorDominioDto response = dominioService.insertValorDominio(body);
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/valores/{codigoValorDominio}",
+	method=RequestMethod.PUT)
+	public ResponseEntity<ValorDominioDto> atualizarValorDominio(@PathVariable final Integer codigoValorDominio,
+			@RequestBody ValorDominioDto body) {
+		
+		final ValorDominioDto response = dominioService.atualizarValorDominio(body, codigoValorDominio);
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }
